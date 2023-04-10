@@ -5,7 +5,8 @@ export class Calculator extends Component {
         super(props);
 
         this.state = {
-            input: ""
+            input: "",
+            previous: ""
         };
     }
     SubmitHandler = e => {
@@ -24,6 +25,7 @@ export class Calculator extends Component {
     ClickHandler = event => {
         let prev = this.state.input;
         this.setState({
+            previous: prev,
             input: prev + event.target.value
         });
     };
@@ -31,6 +33,9 @@ export class Calculator extends Component {
         this.setState({
             input: ""
         });
+    };
+    delHandler = event => {
+        this.setState({ input: this.state.previous });
     };
     render() {
         return (
@@ -58,6 +63,9 @@ export class Calculator extends Component {
                         <input type="button" value="/" onClick={this.ClickHandler} />
                         <input type="button" value="0" onClick={this.ClickHandler} />
                         <input type="button" value="." onClick={this.ClickHandler} />
+                        <button type="button" onClick={this.delHandler}>
+                            {"<--"}
+                        </button>
                         <br />
                         <button type="submit">=</button>
                         <button type="button" onClick={this.ClearHandler}>
