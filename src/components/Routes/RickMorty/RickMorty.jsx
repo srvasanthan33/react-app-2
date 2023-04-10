@@ -5,7 +5,7 @@ class RickMorty extends Component {
         super(props);
 
         this.state = {
-            posts: [],
+            chars: [],
             errorMessage: ""
         };
     }
@@ -13,18 +13,24 @@ class RickMorty extends Component {
     componentDidMount() {
         axios.get("https://rickandmortyapi.com/api/character").then(response => {
             this.setState({
-                posts: response.data
+                chars: response.data.results
             });
             console.log(response.data.results);
         });
     }
     render() {
-        const { posts, errorMessage } = this.state;
+        const { chars, errorMessage } = this.state;
         return (
             <React.Fragment>
                 Rick and Morty
-                {posts.length}
-                {2 + 2}
+                {chars.length
+                    ? chars.map(chara => (
+                          <div id={chara.id}>
+                              <b>{chara.name}</b>
+                              <img src={chara.image} width="100px" />
+                          </div>
+                      ))
+                    : null}
             </React.Fragment>
         );
     }
