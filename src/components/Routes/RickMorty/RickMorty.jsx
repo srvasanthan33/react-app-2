@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+
+import "./RickMorty.css";
 class RickMorty extends Component {
     constructor(props) {
         super(props);
@@ -11,26 +13,33 @@ class RickMorty extends Component {
     }
 
     componentDidMount() {
-        axios.get("https://rickandmortyapi.com/api/character").then(response => {
-            this.setState({
-                chars: response.data.results
+        axios
+            .get("https://rickandmortyapi.com/api/character")
+            .then(response => {
+                this.setState({
+                    chars: response.data.results
+                });
+            })
+            .catch(error => {
+                this.setState({ errorMessage: "API Call failed" });
             });
-            console.log(response.data.results);
-        });
     }
     render() {
         const { chars, errorMessage } = this.state;
         return (
             <React.Fragment>
                 Rick and Morty
-                {chars.length
-                    ? chars.map(chara => (
-                          <div id={chara.id}>
-                              <b>{chara.name}</b>
-                              <img src={chara.image} width="100px" />
-                          </div>
-                      ))
-                    : null}
+                <div className="grid-container">
+                    {chars.length
+                        ? chars.map(chara => (
+                              <div className="element" key={chara.id}>
+                                  <img src={chara.image} />
+                                  <b>{chara.name}</b>
+                              </div>
+                          ))
+                        : null}
+                    {errorMessage ? <div>errorMessage</div> : null}
+                </div>
             </React.Fragment>
         );
     }

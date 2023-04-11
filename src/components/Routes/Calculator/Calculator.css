@@ -4,7 +4,7 @@
     max-width: 250px;
     padding: 20px;
     border-radius: 10px;
-    background-color: rgb(208, 160, 97);
+    background-color: rgb(128, 133, 150);
 }
 
 input,
@@ -12,4 +12,8 @@ button {
     padding: 20px;
     margin: 5px;
     font-weight: 900;
+}
+
+input:hover {
+    background-color: rgb(164, 164, 164);
 }

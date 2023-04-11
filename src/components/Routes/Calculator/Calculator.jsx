@@ -40,8 +40,11 @@ export class Calculator extends Component {
     render() {
         return (
             <React.Fragment>
-                Calculator
+                <center>
+                    <b>Calculator</b>
+                </center>
                 <div className="calc">
+                    <p>CASIO</p>
                     <form onSubmit={this.SubmitHandler}>
                         <input type="text" value={this.state.input} onChange={this.CalcHandler} />
                         <br />
